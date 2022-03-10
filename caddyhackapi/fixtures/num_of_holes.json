@@ -1,0 +1,16 @@
+[
+    {
+        "model": "caddyhackapi.numofholes",
+        "pk": 1,
+        "fields": {
+            "holes": 9
+        }
+    },
+    {
+        "model": "caddyhackapi.numofholes",
+        "pk": 2,
+        "fields": {
+            "holes": 18
+        }
+    }
+]

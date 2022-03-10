@@ -1,0 +1,12 @@
+[
+    {
+        "model": "caddyhackapi.golfcourse",
+        "pk": 1,
+        "fields": {
+            "name": "Best Golf Course Ever",
+            "address": "6170 State Route 154",
+            "state": "Illinois",
+            "zipcode": 62274
+        }
+    }
+]

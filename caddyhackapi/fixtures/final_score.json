@@ -1,0 +1,15 @@
+[
+    {
+        "model": "caddyhackapi.finalscore",
+        "pk": 1,
+        "fields": {
+            "date": "2022-10-23",
+            "score": 40,
+            "share": 0,
+            "par": 50,
+            "course_id": 1,
+            "golfer_id": 1,
+            "num_of_holes_id": 1
+        }
+    }
+]
