@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from django.conf.urls import include
-from caddyhackapi.views import (login_user, register_user, CommentView, GolfCourseView, GolferView, PostView, FinalScoreView, NumOfHolesView)
+from caddyhackapi.views import (login_user, register_user, CommentView, GolfCourseView, GolferView, PostView, FinalScoreView, NumOfHolesView, HoleByHoleView, IndividualHoleView)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'comments', CommentView, 'comment')
@@ -26,6 +26,8 @@ router.register(r'golfers', GolferView, 'golfer')
 router.register(r'posts', PostView, 'post')
 router.register(r'final_scores', FinalScoreView, 'final_score')
 router.register(r'num_of_holes', NumOfHolesView, 'num_of_hole')
+router.register(r'hole_by_holes', HoleByHoleView, 'hole_by_hole')
+router.register(r'individual_holes', IndividualHoleView, 'individual_hole')
 
 urlpatterns = [
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
