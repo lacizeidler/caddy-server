@@ -3,7 +3,6 @@ from caddyhackapi.models.golfer import Golfer
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-
 from caddyhackapi.models.post import Post
 
 
@@ -44,7 +43,7 @@ class CommentView(ViewSet):
 
     def update(self, request, pk):
         comment = Comment.objects.get(pk=pk)
-        comment.content = request.data['comment']
+        comment.comment = request.data['comment']
         comment.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
