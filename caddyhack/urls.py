@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from django.conf.urls import include
-from caddyhackapi.views import (login_user, register_user, CommentView)
+from caddyhackapi.views import (login_user, register_user, CommentView, GolfCourseView)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'comments', CommentView, 'comment')
+router.register(r'golf_courses', GolfCourseView, 'golf_course')
 
 urlpatterns = [
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
