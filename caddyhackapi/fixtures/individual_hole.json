@@ -1,0 +1,92 @@
+[
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 1,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 1
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 2,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 2
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 3,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 3
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 4,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 4
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 5,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 5
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 6,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 6
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 7,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 7
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 8,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 8
+        }
+    },
+    {
+        "model": "caddyhackapi.individualhole",
+        "pk": 9,
+        "fields": {
+            "par": 3,
+            "score": 4,
+            "hole_by_hole_id": 1,
+            "hole_num": 9
+        }
+    }
+]

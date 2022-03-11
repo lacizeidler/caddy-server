@@ -1,0 +1,10 @@
+[
+    {
+        "model": "caddyhackapi.like",
+        "pk": 1,
+        "fields": {
+            "post_id": 1,
+            "golfer_id": 1
+        }
+    }
+]

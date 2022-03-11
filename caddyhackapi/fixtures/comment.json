@@ -1,0 +1,11 @@
+[
+    {
+        "model": "caddyhackapi.comment",
+        "pk": 1,
+        "fields": {
+            "comment": "This is a comment about golf",
+            "post_id": 1,
+            "golfer_id": 1
+        }
+    }
+]

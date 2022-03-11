@@ -1,12 +1,12 @@
 [
     {
-        "model": "caddyhackapi.post",
+        "model": "caddyhackapi.holebyhole",
         "pk": 1,
         "fields": {
             "date": "2022-02-23",
-            "content": "This is a post about golf",
+            "num_of_holes_id": 1,
             "course_id": 1,
-            "image_url": "",
+            "share": 0,
             "golfer_id": 1
         }
     }
