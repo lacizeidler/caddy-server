@@ -20,7 +20,7 @@ class IndividualHoleView(ViewSet):
         individual_hole = IndividualHole.objects.get(pk=pk)
         serializer = IndividualHoleSerializer(individual_hole)
         return Response(serializer.data)
-
+    
     def create(self, request):
         hole_by_hole = HoleByHole.objects.get(
             pk=request.data['hole_by_hole_id'])

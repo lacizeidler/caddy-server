@@ -6,7 +6,9 @@ from caddyhackapi.models.golfer import Golfer
 from caddyhackapi.models.hole_by_hole import HoleByHole
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+from caddyhackapi.models.individual_hole import IndividualHole
 from caddyhackapi.models.num_of_holes import NumOfHoles
+from rest_framework.decorators import action
 
 
 class HoleByHoleView(ViewSet):
@@ -46,9 +48,22 @@ class HoleByHoleView(ViewSet):
         except HoleByHole.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
+    @action(methods=['get'], detail=False)
+    def userholebyhole(self, request):
+        golfer = Golfer.objects.get(user=request.auth.user)
+        hole_by_holes = HoleByHole.objects.filter(golfer=golfer)
+        serializer = HoleByHoleSerializer(hole_by_holes, many=True)
+        return Response(serializer.data)
+    
 
 class HoleByHoleSerializer(ModelSerializer):
     class Meta:
         model = HoleByHole
         fields = ('id', 'date', 'share', 'course', 'golfer', 'num_of_holes')
+        depth = 2
+
+class IndividualHoleSerializer(ModelSerializer):
+    class Meta:
+        model = IndividualHole
+        fields = ('id', 'par', 'score', 'hole_num', 'hole_by_hole')
         depth = 2
