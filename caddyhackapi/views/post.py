@@ -69,5 +69,5 @@ class PostSerializer(ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'date', 'content', 'image_url',
-                  'course', 'golfer', 'likes')
+                  'course', 'golfer', 'likes', 'comment_post')
         depth = 2

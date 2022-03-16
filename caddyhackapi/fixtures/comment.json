@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "comment": "This is a comment about golf",
-            "post_id": 1,
+            "post_id": 4,
             "golfer_id": 1
         }
     }

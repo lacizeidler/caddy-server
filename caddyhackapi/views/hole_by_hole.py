@@ -54,16 +54,11 @@ class HoleByHoleView(ViewSet):
         hole_by_holes = HoleByHole.objects.filter(golfer=golfer)
         serializer = HoleByHoleSerializer(hole_by_holes, many=True)
         return Response(serializer.data)
-    
+
 
 class HoleByHoleSerializer(ModelSerializer):
     class Meta:
         model = HoleByHole
-        fields = ('id', 'date', 'share', 'course', 'golfer', 'num_of_holes')
-        depth = 2
-
-class IndividualHoleSerializer(ModelSerializer):
-    class Meta:
-        model = IndividualHole
-        fields = ('id', 'par', 'score', 'hole_num', 'hole_by_hole')
+        fields = ('id', 'date', 'share', 'course', 'golfer',
+                  'num_of_holes', 'holes_for_hole_by_hole')
         depth = 2
