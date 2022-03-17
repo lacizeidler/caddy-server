@@ -20,18 +20,18 @@ class PostView(ViewSet):
         serializer = PostSerializer(post)
         return Response(serializer.data)
 
-    @action(methods=['post'], detail=True)
+    @action(methods=['put'], detail=True)
     def like(self, request, pk):
-        user = request.auth.user
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
         post = Post.objects.get(pk=pk)
-        post.likes.add(user)
+        post.likes.add(golfer)
         return Response({'message': 'Liked Post'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['delete'], detail=True)
     def unlike(self, request, pk):
-        user = request.auth.user
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
         post = Post.objects.get(pk=pk)
-        post.likes.remove(user)
+        post.likes.remove(golfer)
         return Response({'message': 'Unlike Post'}, status=status.HTTP_201_CREATED)
 
     def create(self, request):
@@ -70,4 +70,4 @@ class PostSerializer(ModelSerializer):
         model = Post
         fields = ('id', 'date', 'content', 'image_url',
                   'course', 'golfer', 'likes', 'comment_post')
-        depth = 2
+        depth = 3
