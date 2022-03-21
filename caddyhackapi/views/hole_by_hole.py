@@ -35,15 +35,13 @@ class HoleByHoleView(ViewSet):
                 share=request.data['share'],
                 golfer=golfer
             )
-            holes = []
-            for hole in range(num_of_holes.holes):
+            for hole in request.data['holes']:
                 individual_hole = IndividualHole.objects.create(
-                    hole_num = hole + 1,
-                    par=request.data['par'],
-                    score=request.data['score'],
+                    hole_num = hole['hole_num'],
+                    par=hole['par'],
+                    score=hole['score'],
                     hole_by_hole_id = hole_by_hole.id
                 )
-                holes.append(individual_hole)
             serializer = HoleByHoleSerializer(hole_by_hole)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
