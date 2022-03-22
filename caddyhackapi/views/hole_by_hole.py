@@ -13,7 +13,8 @@ from rest_framework.decorators import action
 
 class HoleByHoleView(ViewSet):
     def list(self, request):
-        hole_by_hole = HoleByHole.objects.all()
+        golfer = Golfer.objects.get(user=request.auth.user)
+        hole_by_hole = HoleByHole.objects.filter(golfer=golfer)
         serializer = HoleByHoleSerializer(hole_by_hole, many=True)
         return Response(serializer.data)
 
@@ -46,6 +47,12 @@ class HoleByHoleView(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def update(self, request, pk):
+        hole_by_hole = HoleByHole.objects.get(pk=pk)
+        hole_by_hole.share = request.data['share']
+        hole_by_hole.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
         try:
@@ -59,6 +66,12 @@ class HoleByHoleView(ViewSet):
     def userholebyhole(self, request):
         golfer = Golfer.objects.get(user=request.auth.user)
         hole_by_holes = HoleByHole.objects.filter(golfer=golfer)
+        serializer = HoleByHoleSerializer(hole_by_holes, many=True)
+        return Response(serializer.data)
+    
+    @action(methods=['get'], detail=False)
+    def sharedtables(self, request):
+        hole_by_holes = HoleByHole.objects.filter(share=1)
         serializer = HoleByHoleSerializer(hole_by_holes, many=True)
         return Response(serializer.data)
 
