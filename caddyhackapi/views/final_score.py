@@ -63,11 +63,25 @@ class FinalScoreView(ViewSet):
         final_scores = FinalScore.objects.filter(share=1)
         serializer = FinalScoreSerializer(final_scores, many=True)
         return Response(serializer.data)
+    
+    @action(methods=['put'], detail=True)
+    def like(self, request, pk):
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
+        final_score = FinalScore.objects.get(pk=pk)
+        final_score.likes.add(golfer)
+        return Response({'message': 'Liked Post'}, status=status.HTTP_201_CREATED)
+
+    @action(methods=['delete'], detail=True)
+    def unlike(self, request, pk):
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
+        final_score = FinalScore.objects.get(pk=pk)
+        final_score.likes.remove(golfer)
+        return Response({'message': 'Unlike Post'}, status=status.HTTP_201_CREATED)
 
 
 class FinalScoreSerializer(ModelSerializer):
     class Meta:
         model = FinalScore
         fields = ('id', 'date', 'score', 'share',
-                  'par', 'golfer', 'course', 'num_of_holes')
+                  'par', 'golfer', 'course', 'num_of_holes', 'comment_final', 'final_likes')
         depth = 2

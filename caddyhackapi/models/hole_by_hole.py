@@ -7,3 +7,5 @@ class HoleByHole(models.Model):
     course = models.ForeignKey("GolfCourse", on_delete=models.CASCADE)
     golfer = models.ForeignKey("Golfer", on_delete=models.CASCADE)
     share = models.BooleanField()
+    table_likes = models.ManyToManyField(
+        "Golfer", through='LikeTable', related_name='table_likes')

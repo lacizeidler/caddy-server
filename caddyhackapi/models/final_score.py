@@ -9,3 +9,5 @@ class FinalScore(models.Model):
     score = models.IntegerField()
     share = models.BooleanField()
     par = models.IntegerField()
+    final_likes = models.ManyToManyField(
+        "Golfer", through='LikeFinal', related_name='final_likes')

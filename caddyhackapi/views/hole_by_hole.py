@@ -61,6 +61,20 @@ class HoleByHoleView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except HoleByHole.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        
+    @action(methods=['put'], detail=True)
+    def like(self, request, pk):
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
+        hole_by_hole = HoleByHole.objects.get(pk=pk)
+        hole_by_hole.likes.add(golfer)
+        return Response({'message': 'Liked Table'}, status=status.HTTP_201_CREATED)
+
+    @action(methods=['delete'], detail=True)
+    def unlike(self, request, pk):
+        golfer = Golfer.objects.get(user_id=request.auth.user_id)
+        hole_by_hole = HoleByHole.objects.get(pk=pk)
+        hole_by_hole.likes.remove(golfer)
+        return Response({'message': 'Unlike Table'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['get'], detail=False)
     def userholebyhole(self, request):
@@ -80,5 +94,5 @@ class HoleByHoleSerializer(ModelSerializer):
     class Meta:
         model = HoleByHole
         fields = ('id', 'date', 'share', 'course', 'golfer',
-                  'num_of_holes', 'holes_for_hole_by_hole')
+                  'num_of_holes', 'holes_for_hole_by_hole', 'table_likes', 'comment_table')
         depth = 2

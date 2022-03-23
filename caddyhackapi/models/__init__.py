@@ -7,3 +7,7 @@ from caddyhackapi.models.individual_hole import IndividualHole
 from caddyhackapi.models.like import Like
 from caddyhackapi.models.num_of_holes import NumOfHoles
 from caddyhackapi.models.post import Post
+from caddyhackapi.models.comment_final import CommentFinal
+from caddyhackapi.models.comment_table import CommentTable
+from caddyhackapi.models.like_final import LikeFinal
+from caddyhackapi.models.like_table import LikeTable
