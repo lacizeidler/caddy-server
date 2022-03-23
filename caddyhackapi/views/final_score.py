@@ -84,4 +84,4 @@ class FinalScoreSerializer(ModelSerializer):
         model = FinalScore
         fields = ('id', 'date', 'score', 'share',
                   'par', 'golfer', 'course', 'num_of_holes', 'comment_final', 'final_likes')
-        depth = 2
+        depth = 3

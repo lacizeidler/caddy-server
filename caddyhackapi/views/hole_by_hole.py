@@ -94,5 +94,5 @@ class HoleByHoleSerializer(ModelSerializer):
     class Meta:
         model = HoleByHole
         fields = ('id', 'date', 'share', 'course', 'golfer',
-                  'num_of_holes', 'holes_for_hole_by_hole', 'table_likes', 'comment_table')
-        depth = 2
+                  'num_of_holes', 'holes_for_hole_by_hole', 'comment_table', 'table_likes')
+        depth = 3
