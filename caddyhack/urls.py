@@ -18,9 +18,11 @@ from django.urls import path
 from rest_framework import routers
 from django.conf.urls import include
 from caddyhackapi.views import (login_user, register_user, CommentView, GolfCourseView, GolferView, PostView, FinalScoreView, NumOfHolesView, HoleByHoleView, IndividualHoleView)
+from caddyhackapi.views.comment_final import CommentFinalView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'comments', CommentView, 'comment')
+router.register(r'final_comments', CommentFinalView, 'final_comment')
 router.register(r'golf_courses', GolfCourseView, 'golf_course')
 router.register(r'golfers', GolferView, 'golfer')
 router.register(r'posts', PostView, 'post')

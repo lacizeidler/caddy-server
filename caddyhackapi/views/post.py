@@ -64,6 +64,13 @@ class PostView(ViewSet):
         post.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    @action(methods=['get'], detail=False)
+    def userposts(self, request):
+        golfer = Golfer.objects.get(user=request.auth.user)
+        posts = Post.objects.filter(golfer=golfer)
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
+
 
 class PostSerializer(ModelSerializer):
     class Meta:
