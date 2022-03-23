@@ -12,14 +12,14 @@ class CommentFinalView(ViewSet):
     def retrieve(self, request, pk):
         golfer = Golfer.objects.get(user=request.auth.user)
         try:
-            comment = Comment.objects.get(pk=pk)
+            comment = CommentFinal.objects.get(pk=pk)
             if comment.golfer == golfer:
                 comment.is_owner = True
             else:
                 comment.is_owner = False
             serializer = GetCommentFinalSerializer(comment)
             return Response(serializer.data)
-        except Comment.DoesNotExist as ex:
+        except CommentFinal.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
