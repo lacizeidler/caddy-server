@@ -63,7 +63,7 @@ class FinalScoreView(ViewSet):
         final_scores = FinalScore.objects.filter(share=1)
         serializer = FinalScoreSerializer(final_scores, many=True)
         return Response(serializer.data)
-    
+
     @action(methods=['put'], detail=True)
     def like(self, request, pk):
         golfer = Golfer.objects.get(user_id=request.auth.user_id)
