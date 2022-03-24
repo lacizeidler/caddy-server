@@ -68,15 +68,15 @@ class FinalScoreView(ViewSet):
     def like(self, request, pk):
         golfer = Golfer.objects.get(user_id=request.auth.user_id)
         final_score = FinalScore.objects.get(pk=pk)
-        final_score.likes.add(golfer)
-        return Response({'message': 'Liked Post'}, status=status.HTTP_201_CREATED)
+        final_score.final_likes.add(golfer)
+        return Response({'message': 'Liked Score'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['delete'], detail=True)
     def unlike(self, request, pk):
         golfer = Golfer.objects.get(user_id=request.auth.user_id)
         final_score = FinalScore.objects.get(pk=pk)
-        final_score.likes.remove(golfer)
-        return Response({'message': 'Unlike Post'}, status=status.HTTP_201_CREATED)
+        final_score.final_likes.remove(golfer)
+        return Response({'message': 'Unlike Score'}, status=status.HTTP_201_CREATED)
 
 
 class FinalScoreSerializer(ModelSerializer):

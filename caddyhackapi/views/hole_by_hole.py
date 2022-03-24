@@ -38,16 +38,16 @@ class HoleByHoleView(ViewSet):
             )
             for hole in request.data['holes']:
                 individual_hole = IndividualHole.objects.create(
-                    hole_num = hole['hole_num'],
+                    hole_num=hole['hole_num'],
                     par=hole['par'],
                     score=hole['score'],
-                    hole_by_hole_id = hole_by_hole.id
+                    hole_by_hole_id=hole_by_hole.id
                 )
             serializer = HoleByHoleSerializer(hole_by_hole)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_400_BAD_REQUEST)
-        
+
     def update(self, request, pk):
         hole_by_hole = HoleByHole.objects.get(pk=pk)
         hole_by_hole.share = request.data['share']
@@ -61,19 +61,19 @@ class HoleByHoleView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except HoleByHole.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-        
+
     @action(methods=['put'], detail=True)
     def like(self, request, pk):
         golfer = Golfer.objects.get(user_id=request.auth.user_id)
         hole_by_hole = HoleByHole.objects.get(pk=pk)
-        hole_by_hole.likes.add(golfer)
+        hole_by_hole.table_likes.add(golfer)
         return Response({'message': 'Liked Table'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['delete'], detail=True)
     def unlike(self, request, pk):
         golfer = Golfer.objects.get(user_id=request.auth.user_id)
         hole_by_hole = HoleByHole.objects.get(pk=pk)
-        hole_by_hole.likes.remove(golfer)
+        hole_by_hole.table_likes.remove(golfer)
         return Response({'message': 'Unlike Table'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['get'], detail=False)
@@ -82,7 +82,7 @@ class HoleByHoleView(ViewSet):
         hole_by_holes = HoleByHole.objects.filter(golfer=golfer)
         serializer = HoleByHoleSerializer(hole_by_holes, many=True)
         return Response(serializer.data)
-    
+
     @action(methods=['get'], detail=False)
     def sharedtables(self, request):
         hole_by_holes = HoleByHole.objects.filter(share=1)
@@ -94,5 +94,5 @@ class HoleByHoleSerializer(ModelSerializer):
     class Meta:
         model = HoleByHole
         fields = ('id', 'date', 'share', 'course', 'golfer',
-                  'num_of_holes', 'holes_for_hole_by_hole', 'comment_table', 'table_likes')
+                  'num_of_holes', 'comment_table', 'table_likes', 'holes_for_hole_by_hole')
         depth = 3
